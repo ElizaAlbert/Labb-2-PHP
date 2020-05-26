@@ -34,6 +34,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 </head>
 
 <body>
+  <h1>IK Svalan medlemsregister</h1>
   <table>
     <tr>
       <th>Nr</th>
@@ -58,8 +59,6 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
       echo "<td><button type='button'><i class='material-icons'>add_circle_outline</i></button></td>";
       echo "</tr>";
     }
-
-
     ?>
   </table>
 
