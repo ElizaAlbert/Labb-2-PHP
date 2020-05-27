@@ -22,6 +22,10 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 
 <body>
   <h1>IK Svalan medlemsregister</h1>
+
+  <!--------------- 
+  Hela table skall bytas ut till input fält och knapparna bytas ut till en spara knapp vid varje rad. kommer bli snyggare och bättre
+  --------------->
   <table>
     <tr>
       <th>Nr</th>
@@ -42,11 +46,12 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
       echo "<td>" . $member["payment"] . "</td>";
       echo "<td>" . $member["activity"] . "</td>";
       echo "<td>" . $member["team"] . "</td>";
-      echo "<td><button type='button'><i class='material-icons'>clear</i></button></td>";
-      echo "<td><button type='button'><i class='material-icons'>add_circle_outline</i></button></td>";
+      echo "<td><form method='post' action=''><input class='b-red' type='submit' name='del' value='X'></form></td>";
+      echo "<td><form method='post' action=''><input class='b-green' type='submit' name='edit' value='V'></form></td>";
       echo "</tr>";
     }
     ?>
+
   </table>
 
 
