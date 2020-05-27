@@ -1,21 +1,11 @@
 <?php
-$servername = "localhost:8889";
-$username = "root";
-$password = "root";
+include "includes/config.inc.php";
 
-
-$conn = new PDO("mysql:host=$servername;dbname=labb2-php", $username, $password);
-
-
+// Adding all members to array. 
 $members = [];
 foreach ($conn->query("SELECT * FROM members") as $row) {
   $members[] = $row;
 }
-
-
-// $sth = $conn->prepare($members);
-// $sth->execute()
-
 
 ?>
 
@@ -31,6 +21,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 </head>
 
 <body>
+  <h1>IK Svalan medlemsregister</h1>
   <table>
     <tr>
       <th>Nr</th>
@@ -45,18 +36,16 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
     <?php
     foreach ($members as $member) {
       echo "<tr>";
-      echo "<td>" . $member[0] . "</td>";
-      echo "<td>" . $member[1] . "</td>";
-      echo "<td>" . $member[2] . "</td>";
-      echo "<td>" . $member[3] . "</td>";
-      echo "<td>" . $member[4] . "</td>";
-      echo "<td>" . $member[5] . "</td>";
+      echo "<td>" . $member["member_ID"] . "</td>";
+      echo "<td>" . $member["first_name"] . "</td>";
+      echo "<td>" . $member["last_name"] . "</td>";
+      echo "<td>" . $member["payment"] . "</td>";
+      echo "<td>" . $member["activity"] . "</td>";
+      echo "<td>" . $member["team"] . "</td>";
       echo "<td><button type='button'><i class='material-icons'>clear</i></button></td>";
       echo "<td><button type='button'><i class='material-icons'>add_circle_outline</i></button></td>";
       echo "</tr>";
     }
-
-
     ?>
   </table>
 
@@ -64,7 +53,6 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
   <!------------------------- LOGIN  ------------------------->
 
   <?php
-  include "includes/config.inc.php";
 
   // Check user logged in or not
   if (!isset($_SESSION['uname'])) {
