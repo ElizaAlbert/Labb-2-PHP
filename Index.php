@@ -1,20 +1,14 @@
 <?php
-$servername = "localhost:8889";
-$username = "root";
-$password = "root";
+include "includes/config.inc.php";
 
-
-$conn = new PDO("mysql:host=$servername;dbname=labb2-php", $username, $password);
-
-
+// Adding all members to array. 
 $members = [];
 foreach ($conn->query("SELECT * FROM members") as $row) {
   $members[] = $row;
 }
 
 
-// $sth = $conn->prepare($members);
-// $sth->execute()
+
 
 
 ?>
@@ -31,6 +25,12 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 </head>
 
 <body>
+  <h1>IK Svalan medlemsregister</h1>
+
+
+  <!--------------- 
+  Table to list all members on site and options to edit values and save form.
+  --------------->
   <table>
     <tr>
       <th>Nr</th>
@@ -39,32 +39,50 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
       <th>Betald</th>
       <th>Aktivitet</th>
       <th>Lag</th>
-      <th>Ta bort</th>
       <th>Redigera</th>
     </tr>
-    <?php
-    foreach ($members as $member) {
-      echo "<tr>";
-      echo "<td>" . $member[0] . "</td>";
-      echo "<td>" . $member[1] . "</td>";
-      echo "<td>" . $member[2] . "</td>";
-      echo "<td>" . $member[3] . "</td>";
-      echo "<td>" . $member[4] . "</td>";
-      echo "<td>" . $member[5] . "</td>";
-      echo "<td><button type='button'><i class='material-icons'>clear</i></button></td>";
-      echo "<td><button type='button'><i class='material-icons'>add_circle_outline</i></button></td>";
-      echo "</tr>";
-    }
 
+    <?php
+
+    //Saves array information for easy access.
+    foreach ($members as $member) {
+      $member_id = $member["member_ID"];
+      $first_name = $member["first_name"];
+      $last_name = $member["last_name"];
+      $payment = $member["payment"];
+      $activity = $member["activity"];
+      $team = $member["team"];
 
     ?>
+
+      <tr>
+        <form method="post" action="">
+          <td><input type="text" name="member_ID" value="<?php echo $member_id ?>"></td>
+          <td><input type="text" name="first_name" value="<?php echo $first_name ?>"></td>
+          <td><input type="text" name="last_name" value="<?php echo $last_name ?>"></td>
+          <td><input type="text" name="payment" value="<?php echo $payment ?>"></td>
+          <td><input type="text" name="activity" value="<?php echo $activity ?>"></td>
+          <td><input type="text" name="team" value="<?php echo $team ?>"></td>
+          <td><input class="b-green" type="submit" name="<?php echo $member_ID ?>" value="V"></td>
+        </form>
+      </tr>
+    <?php
+    }
+    if (isset($_POST['1'])) {
+      $dbUpdate = "UPDATE members 
+                  SET 
+                  first_name = $first_name WHERE id='$member_ID' ";
+    }
+    ?>
   </table>
+
+
+
 
 
   <!------------------------- LOGIN  ------------------------->
 
   <?php
-  include "includes/config.inc.php";
 
   // Check user logged in or not
   if (!isset($_SESSION['uname'])) {
@@ -82,7 +100,6 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
   <form method='post' action="">
     <input type="submit" value="Logout" name="but_logout">
   </form>
-
 </body>
 
 </html>

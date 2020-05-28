@@ -13,3 +13,12 @@ th {
 td {
   text-align: center;
 }
+
+
+.b-red {
+  color: red;
+}
+
+.b-green {
+  color: green;
+}
