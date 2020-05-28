@@ -22,6 +22,8 @@ if (!$conn) {
     exit;
 }
 
+// DELETE BUTTON
+
 if (isset($_GET['del'])) {
     $id = $_GET['del'];
     mysqli_query($conn, "DELETE FROM members WHERE member_id=$id");
