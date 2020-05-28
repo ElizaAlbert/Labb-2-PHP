@@ -8,9 +8,6 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 }
 
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +24,10 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 <body>
   <h1>IK Svalan medlemsregister</h1>
 
-
   <!--------------- 
   Table to list all members on site and options to edit values and save form.
   --------------->
+
   <table>
     <tr>
       <th>Nr</th>
@@ -46,7 +43,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 
     //Saves array information for easy access.
     foreach ($members as $member) {
-      $member_id = $member["member_ID"];
+      // $member_id = $member["member_ID"];
       $first_name = $member["first_name"];
       $last_name = $member["last_name"];
       $payment = $member["payment"];
@@ -56,27 +53,21 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
     ?>
 
       <tr>
-        <form method="post" action="">
-          <td><input type="text" name="member_ID" value="<?php echo $member_id ?>"></td>
+        <form method="post" action="index.php">
+          <td><input type="text" name="member_ID" value="<?php echo $member["member_ID"] ?>"></td>
           <td><input type="text" name="first_name" value="<?php echo $first_name ?>"></td>
           <td><input type="text" name="last_name" value="<?php echo $last_name ?>"></td>
           <td><input type="text" name="payment" value="<?php echo $payment ?>"></td>
           <td><input type="text" name="activity" value="<?php echo $activity ?>"></td>
           <td><input type="text" name="team" value="<?php echo $team ?>"></td>
-          <td><input class="b-green" type="submit" name="<?php echo $member_ID ?>" value="V"></td>
+          <td><input class="b-green" type="submit" name="<?php echo $member["member_ID"] ?>" value="V"></td>
         </form>
       </tr>
     <?php
     }
-    if (isset($_POST['1'])) {
-      $dbUpdate = "UPDATE members 
-                  SET 
-                  first_name = $first_name WHERE id='$member_ID' ";
-    }
+
     ?>
   </table>
-
-
 
 
 
@@ -100,6 +91,9 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
   <form method='post' action="">
     <input type="submit" value="Logout" name="but_logout">
   </form>
+
+
+
 </body>
 
 </html>
