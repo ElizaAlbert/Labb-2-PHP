@@ -9,6 +9,7 @@ session_start(); /* Starts new or resumes existing session */
 $user = "root"; /* Database User */
 $pwd = "root"; /* Database Password */
 $dbname = "svalan"; /* Database name */
+$id = 0;
 
 // Connecting to database
 $conn = mysqli_connect("localhost", $user, $pwd, $dbname);
@@ -19,4 +20,11 @@ if (!$conn) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL; /* Returns the error code from the last connection error, if any */
     exit;
+}
+
+if (isset($_GET['del'])) {
+    $id = $_GET['del'];
+    mysqli_query($conn, "DELETE FROM members WHERE member_id=$id");
+    $_SESSION['message'] = "Address deleted!";
+    header('location: ../index.php');
 }
