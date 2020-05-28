@@ -41,18 +41,19 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 
     //Saves array information for easy access.
     foreach ($members as $member) {
-      $member_id = $member["member_ID"];
+      // $member_id = $member["member_ID"];
       $first_name = $member["first_name"];
       $last_name = $member["last_name"];
       $payment = $member["payment"];
       $activity = $member["activity"];
       $team = $member["team"];
+
+
+    ?>
+
+    <?php
     }
-    if (isset($_POST['1'])) {
-      $dbUpdate = "UPDATE members 
-                  SET 
-                  first_name = $first_name WHERE id='$member_ID' ";
-    }
+
     ?>
 
     <tbody>
@@ -60,22 +61,23 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
       <?php $results = mysqli_query($conn, "SELECT * FROM members");
       while ($row = mysqli_fetch_array($results)) { ?>
         <tr>
-          <td><input type="text" name="member_ID" value="<?php echo $row['member_ID']; ?>"></td>
-          <td><input type="text" name="first_name" value="<?php echo $row['first_name']; ?>"></td>
-          <td><input type="text" name="last_name" value="<?php echo $row['last_name']; ?>"></td>
-          <td><input type="text" name="payment" value="<?php echo $row['payment']; ?>"></td>
-          <td><input type="text" name="activity" value="<?php echo $row['activity']; ?>"></td>
-          <td><input type="text" name="team" value="<?php echo $row['team']; ?>"></td>
-          <td><input class="b-green" type="submit" name="<?php echo $member_ID ?>" value="V"></td>
-          <td>
-            <!------------------------------- DELETE BUTTON --------------------------------->
-            <button style="background-color: red;" onclick="location.href='includes/config.inc.php?del=<?php echo $row['member_ID'] ?>'">Radera</button>
-          </td>
+          <form method="post" action="index.php">
+            <td><input type="text" name="member_ID" value="<?php echo $row['member_ID']; ?>"></td>
+            <td><input type="text" name="first_name" value="<?php echo $row['first_name']; ?>"></td>
+            <td><input type="text" name="last_name" value="<?php echo $row['last_name']; ?>"></td>
+            <td><input type="text" name="payment" value="<?php echo $row['payment']; ?>"></td>
+            <td><input type="text" name="activity" value="<?php echo $row['activity']; ?>"></td>
+            <td><input type="text" name="team" value="<?php echo $row['team']; ?>"></td>
+            <td><input class="b-green" type="submit" name="<?php echo $member_ID ?>" value="V"></td>
+            <td>
+              <!------------------------------- DELETE BUTTON --------------------------------->
+              <button style="background-color: red;" onclick="location.href='includes/config.inc.php?del=<?php echo $row['member_ID'] ?>'">Radera</button>
+            </td>
+          </form>
         </tr>
       <?php  }  ?>
     </tbody>
   </table>
-
 
   <!------------------------------------------ LOGIN  ------------------------------------------>
 
@@ -97,6 +99,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
   <form method='post' action="">
     <input type="submit" value="Logout" name="but_logout">
   </form>
+
 </body>
 
 </html>
