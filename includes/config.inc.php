@@ -6,8 +6,8 @@
 
 session_start(); /* Starts new or resumes existing session */
 
-$user = "Eliza"; /* Database User */
-$pwd = "secret"; /* Database Password */
+$user = "root"; /* Database User */
+$pwd = "root"; /* Database Password */
 $dbname = "svalan"; /* Database name */
 
 // Connecting to database
