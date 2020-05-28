@@ -9,7 +9,7 @@ include "includes/config.inc.php";
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body id="login">
     <style>
         /* GOOGLE FONT OF LOGIN TITLE */
         @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Lobster+Two&display=swap');

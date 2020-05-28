@@ -17,7 +17,10 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IK Svalan</title>
   <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/loginStyle.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -58,8 +61,6 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
     }
 
     ?>
-
-
     <tbody>
       <!-- RESULTS outprints info such as: current_field, field_count, lengths and num_rows -->
       <?php $results = mysqli_query($conn, "SELECT * FROM members");
@@ -99,8 +100,8 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 
   ?>
 
-  <form method='post' action="">
-    <input type="submit" value="Logout" name="but_logout">
+  <form method='POST' action="">
+    <input id="logout_but" type="submit" value="Logout" name="but_logout">
   </form>
 
 
