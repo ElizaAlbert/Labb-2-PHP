@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
       "<html>
       <body>
         <form action='phpUpdateFormScript.php' method='post'>
-          Student ID: $id<br>
+          Medlems ID: $id<br>
           <input type='hidden' name='member_ID' value='$id'>
           Förnamn: <input type='text' name='first_name' value='$first_name'><br>
           Efternamn: <input type='text' name='last_name' value='$last_name'><br>
