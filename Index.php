@@ -48,7 +48,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 
     //Saves array information for easy access.
     foreach ($members as $member) {
-      // $member_id = $member["member_ID"];
+      $member_id = $member["member_ID"];
       $first_name = $member["first_name"];
       $last_name = $member["last_name"];
       $payment = $member["payment"];
@@ -72,7 +72,7 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
           <td><input type="text" name="payment" value="<?php echo $row['payment']; ?>"></td>
           <td><input type="text" name="activity" value="<?php echo $row['activity']; ?>"></td>
           <td><input type="text" name="team" value="<?php echo $row['team']; ?>"></td>
-          <td><input class="b-green" type="submit" name="<?php echo $member_ID ?>" value="V"></td>
+          <td> <button style="background-color: green;" onclick="location.href='./phpUpdateForm.php?id=<?php echo $row['member_ID'] ?>'">Ändra</button>
           <td>
             <!------------------------------- DELETE BUTTON --------------------------------->
             <button style="background-color: red;" onclick="location.href='includes/config.inc.php?del=<?php echo $row['member_ID'] ?>'">Radera</button>
