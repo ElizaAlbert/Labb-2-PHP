@@ -1,4 +1,9 @@
 <?php
+
+//turn on php error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require "includes/config.inc.php";
 
 // Adding all members to array. 
@@ -26,11 +31,13 @@ foreach ($conn->query("SELECT * FROM members") as $row) {
 <body>
   <h1>IK Svalan medlemsregister</h1>
 
+  <!-- ADD MEMBERS -->
+
+  <button style="background-color: red;" onclick="location.href='includes/config.inc.php?del=<?php echo $row['member_ID'] ?>'">Radera</button>
+  <p><a href="add.php">Insert New Record</a></p>
+
   <!--------------- TABLE to list all members on site and options to edit values and save form --------------->
 
-  <!--------------- 
-  Table to list all members on site and options to edit values and save form.
-  --------------->
 
   <table>
     <tr>
